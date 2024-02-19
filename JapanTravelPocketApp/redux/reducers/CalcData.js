@@ -49,43 +49,43 @@ const initialState = {
   euroSug: [
     {
       euroSugId: 1,
-      euroSugAmount: '5',
+      euroSugAmount: 5,
     },
     {
       euroSugId: 2,
-      yenSugAmount: '10',
+      euroSugAmount: 10,
     },
     {
       euroSugId: 3,
-      yenSugAmount: '15',
+      euroSugAmount: 15,
     },
     {
       euroSugId: 4,
-      yenSugAmount: '20',
+      euroSugAmount: 20,
     },
     {
       euroSugId: 5,
-      yenSugAmount: '25',
+      euroSugAmount: 25,
     },
     {
       euroSugId: 6,
-      yenSugAmount: '30',
+      euroSugAmount: 30,
     },
     {
       euroSugId: 7,
-      yenSugAmount: '40',
+      euroSugAmount: 40,
     },
     {
       euroSugId: 8,
-      yenSugAmount: '50',
+      euroSugAmount: 50,
     },
     {
       euroSugId: 9,
-      yenSugAmount: '100',
+      euroSugAmount: 100,
     },
     {
       euroSugId: 10,
-      yenSugAmount: '1000',
+      euroSugAmount: 1000,
     },
   ],
   euroIcon: 'fa-euro-sign',

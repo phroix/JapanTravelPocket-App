@@ -21,7 +21,8 @@ const CalcInput = props => {
         <TextInput
           placeholder={props.placeholder ? props.placeholder : ''}
           style={style.input}
-          value={value}
+          // value={value}
+          value={props.value}
           keyboardType={props.keyboardType ? props.keyboardType : 'default'}
           onChangeText={val => {
             setValue(val);
