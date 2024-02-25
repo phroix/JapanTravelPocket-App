@@ -22,6 +22,8 @@ const CalcInput = props => {
           placeholder={props.placeholder ? props.placeholder : ''}
           style={style.input}
           // value={value}
+          selectTextOnFocus={true}
+          keyboardAppearance={'dark'}
           value={props.value}
           keyboardType={props.keyboardType ? props.keyboardType : 'default'}
           onChangeText={val => {
