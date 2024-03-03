@@ -17,11 +17,11 @@ const DatePicker = props => {
   const [date, setDate] = useState(dayjs());
 
   useEffect(() => {
-    handleDatePick(date);
+    // handleDatePick(date);
   }, []);
 
   const handleDatePick = dateValue => {
-    const formatedDate = dateValue.locale(locale).format('DD/MM/YYYY');
+    const formatedDate = dateValue.locale(locale).format('YYYY-MM-DD');
     setDate(dateValue);
     props.onChangeDate(formatedDate);
   };

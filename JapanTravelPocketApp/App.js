@@ -18,6 +18,7 @@ import {faBookmark as solFaBookmark} from '@fortawesome/free-solid-svg-icons/faB
 import {faEuroSign} from '@fortawesome/free-solid-svg-icons/faEuroSign';
 import {faYenSign} from '@fortawesome/free-solid-svg-icons/faYenSign';
 import {faRetweet} from '@fortawesome/free-solid-svg-icons/faRetweet';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 
 library.add(
   fab,
@@ -30,6 +31,7 @@ library.add(
   faEuroSign,
   faYenSign,
   faRetweet,
+  faChevronLeft
 );
 
 const App = () => {

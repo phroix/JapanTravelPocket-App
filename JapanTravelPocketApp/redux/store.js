@@ -9,10 +9,12 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit';
 
 // Importing the CalcData reducer from the ./reducers/CalcData file
 import CalcData from './reducers/CalcData';
+import Spendings from './reducers/Spendings';
 
 // Creating a rootReducer that combines all reducers in the app
 const rootReducer = combineReducers({
   calcData: CalcData,
+  spendings: Spendings
 });
 
 // Configuring the redux-persist library to persist the root reducer with AsyncStorage

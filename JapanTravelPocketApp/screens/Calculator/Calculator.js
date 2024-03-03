@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
@@ -26,25 +27,36 @@ const Calculator = () => {
   const euroSug = calcData.euroSug;
   const yenIcon = calcData.yenIcon;
   const euroIcon = calcData.euroIcon;
+  const yenCurrency = calcData.yenCurrency;
+  const euroCurrency = calcData.euroCurrency;
+  const currencyDate = calcData.currencyDate;
   const dispatch = useDispatch();
-  // dispatch(resetCalcData());
 
   //for switching between euro and yen
   const [isEuro, setIsEuro] = useState(false);
 
   //currency data from the currency api
-  const [euroCurrency, setEuroCurrency] = useState(null);
-  const [yenCurrency, setYenCurrency] = useState(null);
-  const [currencyDate, setCurrencyDate] = useState(null);
+  // const [euroCurrency, setEuroCurrency] = useState(null);
+  // const [yenCurrency, setYenCurrency] = useState(null);
+  // const [currencyDate, setCurrencyDate] = useState(null);
 
   //input currency amount
   const [euroInput, setEuroInput] = useState(null);
   const [yenInput, setYenInput] = useState(null);
+  // dispatch(resetCalcData());
+  console.log('general');
 
   useEffect(() => {
+    // getCurrency();
     // getCurrency(setEuroCurrency, setYenCurrency, setCurrencyDate);
-    console.log('getCurrency');
+    console.log('useEffect');
   }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log('useFocusEffect'); // This will log every time the component gains focus
+    }, []),
+  );
 
   const handleEurChange = amount => {
     const normalizedAmount = amount.replace(/,/g, '.');

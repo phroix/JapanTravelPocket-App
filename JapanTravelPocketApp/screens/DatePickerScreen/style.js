@@ -6,13 +6,14 @@ import {
 } from '../../assets/styles/scaling';
 
 const style = StyleSheet.create({
+  datePicker: {
+    marginHorizontal: horizontalScale(20)
+  },
   headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: verticalScale(30),
-    marginBottom: verticalScale(30),
-    paddingRight: horizontalScale(85),
+    marginTop: verticalScale(80),
+    marginBottom: verticalScale(30)
   },
 });
 

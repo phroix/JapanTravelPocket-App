@@ -1,7 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  yenCurrency: null,
   yenSug: [
     {
       yenSugId: 1,
@@ -45,7 +44,6 @@ const initialState = {
     },
   ],
   yenIcon: 'fa-yen-sign',
-  euroCurrency: null,
   euroSug: [
     {
       euroSugId: 1,
@@ -104,9 +102,17 @@ const CalcData = createSlice({
     updateEuroCurrency: (state, action) => {
       state.euroCurrency = action.payload;
     },
+    updateCurrencyDate: (state, action) => {
+      state.currencyDate = action.payload;
+    },
   },
 });
 
-export const {resetCalcData, updateYenCurrency, updateEuroCurrency} = CalcData.actions;
+export const {
+  resetCalcData,
+  updateYenCurrency,
+  updateEuroCurrency,
+  updateCurrencyDate,
+} = CalcData.actions;
 
 export default CalcData.reducer;

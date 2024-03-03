@@ -20,6 +20,12 @@ const style = StyleSheet.create({
     lineHeight: scaleFontSize(19),
     fontWeight: '400',
   },
+  title4: {
+    fontFamily: 'Inter',
+    fontSize: scaleFontSize(32),
+    lineHeight: scaleFontSize(32),
+    fontWeight: '400',
+  },
 });
 
 export default style;

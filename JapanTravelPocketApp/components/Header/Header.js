@@ -12,6 +12,8 @@ const Header = props => {
         return style.title2;
       case 3:
         return style.title3;
+      case 4:
+        return style.title4;
       default:
         return style.title1;
     }

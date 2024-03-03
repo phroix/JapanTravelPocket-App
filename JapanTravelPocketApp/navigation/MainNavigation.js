@@ -2,6 +2,7 @@ import React from 'react';
 import {Text} from 'react-native';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import {Routes} from './Routes';
 
 import Calculator from '../screens/Calculator/Calculator';
@@ -10,8 +11,26 @@ import Activities from '../screens/Activities/Activities';
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {verticalScale} from '../assets/styles/scaling';
+import DatePickerScreen from '../screens/DatePickerScreen/DatePickerScreen';
 
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const DatePickerStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{header: () => null, headerShown: false}}>
+      <Stack.Screen
+        name={Routes.Spendings}
+        component={Spendings}
+      />
+      <Stack.Screen
+        name={Routes.DatePickerScreen}
+        component={DatePickerScreen}
+      />
+    </Stack.Navigator>
+  );
+};
+
 const MainNavigation = () => {
   const iconSize = 30;
 
@@ -32,11 +51,11 @@ const MainNavigation = () => {
             iconName = focused
               ? 'fa-solid fa-money-bill-1'
               : 'fa-regular fa-money-bill-1';
-          } else if (route.name === Routes.Spendings) {
+          } else if (route.name === Routes.DatePickerStack) {
             iconName = focused
               ? 'fa-solid fa-credit-card'
               : 'fa-regular fa-credit-card';
-          } else if (route.name == Routes.Activities) {
+          } else if (route.name === Routes.Activities) {
             iconName = focused
               ? 'fa-solid fa-bookmark'
               : 'fa-regular fa-bookmark';
@@ -52,9 +71,9 @@ const MainNavigation = () => {
 
           if (route.name === Routes.Calculator) {
             labelName = focused ? Routes.Calculator : '';
-          } else if (route.name === Routes.Spendings) {
+          } else if (route.name === Routes.DatePickerStack) {
             labelName = focused ? Routes.Spendings : '';
-          } else if (route.name == Routes.Activities) {
+          } else if (route.name === Routes.Activities) {
             labelName = focused ? Routes.Activities : '';
           }
 
@@ -62,7 +81,7 @@ const MainNavigation = () => {
         },
       })}>
       <Tab.Screen name={Routes.Calculator} component={Calculator} />
-      <Tab.Screen name={Routes.Spendings} component={Spendings} />
+      <Tab.Screen name={Routes.DatePickerStack} component={DatePickerStack} />
       <Tab.Screen name={Routes.Activities} component={Activities} />
     </Tab.Navigator>
   );
