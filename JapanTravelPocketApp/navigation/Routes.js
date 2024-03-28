@@ -4,4 +4,5 @@ export const Routes = {
   DatePickerScreen: 'DatePickerScreen',
   DatePickerStack: 'DatePickerStack',
   Activities: 'Activities',
+  Tags: "Tags"
 };

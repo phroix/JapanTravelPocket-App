@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import store from './redux/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistor} from './redux/store';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fab} from '@fortawesome/free-brands-svg-icons';
@@ -18,7 +19,9 @@ import {faBookmark as solFaBookmark} from '@fortawesome/free-solid-svg-icons/faB
 import {faEuroSign} from '@fortawesome/free-solid-svg-icons/faEuroSign';
 import {faYenSign} from '@fortawesome/free-solid-svg-icons/faYenSign';
 import {faRetweet} from '@fortawesome/free-solid-svg-icons/faRetweet';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import {faPlus} from '@fortawesome/free-solid-svg-icons/faPlus';
+import {faXmark} from '@fortawesome/free-solid-svg-icons/faXmark';
 
 library.add(
   fab,
@@ -31,18 +34,22 @@ library.add(
   faEuroSign,
   faYenSign,
   faRetweet,
-  faChevronLeft
+  faChevronLeft,
+  faPlus,
+  faXmark,
 );
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor} loading={null}>
-        <NavigationContainer>
-          <MainNavigation />
-        </NavigationContainer>
-      </PersistGate>
-    </Provider>
+    <GestureHandlerRootView style={{flex: 1}}>
+      <Provider store={store}>
+        <PersistGate persistor={persistor} loading={null}>
+          <NavigationContainer>
+            <MainNavigation />
+          </NavigationContainer>
+        </PersistGate>
+      </Provider>
+    </GestureHandlerRootView>
   );
 };
 

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {horizontalScale} from '../../assets/styles/scaling';
+import {horizontalScale, verticalScale} from '../../assets/styles/scaling';
 
 const style = StyleSheet.create({
   container: {
@@ -7,7 +7,7 @@ const style = StyleSheet.create({
     // backgroundColor: 'red',
     // borderRadius: horizontalScale(26),
     width: horizontalScale(44),
-    height: horizontalScale(44),
+    height: verticalScale(44),
     alignItems: 'center',
     justifyContent: 'center',
   },

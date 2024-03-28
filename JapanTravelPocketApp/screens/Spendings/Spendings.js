@@ -9,7 +9,7 @@ import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
 
 import DatePicker from '../../components/DatePicker/DatePicker';
-import DateHeaderButton from '../../components/DateHeaderButton/DateHeaderButton';
+import HeaderButton from '../../components/DateHeaderButton/HeaderButton';
 import BackButton from '../../components/BackButton/BackButton';
 
 import dayjs from 'dayjs';
@@ -18,11 +18,14 @@ import SpendingsAPI from '../../api/spendings';
 import {Routes} from '../../navigation/Routes';
 import SpendingRow from '../../components/SpendingRow/SpendingRow';
 import SpendingsList from '../../components/SpendingsList/SpendingsList';
+import AddButton from '../../components/AddButton/AddButton';
+import TagsAPI from '../../api/tags';
 
 const Spendings = ({navigation}) => {
   const spendingsData = useSelector(state => state.spendings);
   const spendings = spendingsData.spendings;
   const date = spendingsData.date;
+  // console.log("date1 " + date);
   const dispatch = useDispatch();
 
   // const [date, setDate] = useState(null);
@@ -34,13 +37,39 @@ const Spendings = ({navigation}) => {
     //   const data = SpendingsAPI.getSpendingByDate(date.toString());
     //   setError(data);
     // }
+    // console.log("date2 " + date);
     dispatch(updateSpendingsDate(dayjs()));
+    fetchSpendingsData();
+    fetchTagsData();
+    // console.log("date3 " + date);
   }, []);
 
+  // useEffect(() => {
+  //   fetchData();
+  // }, [date]);
+  useFocusEffect(
+    React.useCallback(() => {
+      // console.log('useFocusEffect'); // This will log every time the component gains focus
+      fetchSpendingsData();
+      fetchTagsData();
+    }, [date]),
+  );
+
   useEffect(() => {
-    console.log(date);
-    console.log(error);
+    // console.log('spendings');
+    // console.log(date);
+    // SpendingsAPI.getSpendingByDate(date.toString());
+    // console.log(spendings);
+    // console.log(error);
   }, [spendings]);
+
+  const fetchSpendingsData = async () => {
+    await SpendingsAPI.getSpendingByDate(date.toString());
+  };
+
+  const fetchTagsData = async () => {
+    await TagsAPI.getTags();
+  };
 
   const formatDate = dateString => {
     const dateObject = new Date(dateString);
@@ -56,18 +85,23 @@ const Spendings = ({navigation}) => {
         <BackButton
           onPress={() => navigation.navigate(Routes.DatePickerScreen)}
         />
-        <DateHeaderButton
+        <HeaderButton
           title={date && formatDate(date)}
           onPress={() => navigation.navigate(Routes.DatePickerScreen)}
         />
       </View>
-      <SpendingRow
-        name={'Ramen miso und shoyu'}
-        price={1500}
-        tag={'Dönerbox'}
-        tagColor={'red'}
-      />
-      <SpendingsList />
+      <View style={style.spendingsContainer}>
+        <SpendingsList
+          spendings={spendings}
+          onPress={() => {
+            console.log('press tag');
+            navigation.navigate(Routes.Tags);
+          }}
+        />
+      </View>
+      <View style={style.addButtonContainer}>
+        <AddButton iconName={'fa-solid fa-plus'} label={'Add new'} />
+      </View>
     </SafeAreaView>
   );
 };

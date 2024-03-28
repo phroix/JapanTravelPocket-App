@@ -22,9 +22,26 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
+  title1: {
     color: '#FFFFFF',
+    fontFamily: 'Inter',
     fontSize: scaleFontSize(16),
+    lineHeight: scaleFontSize(20),
+    fontWeight: '400',
+  },
+  title2: {
+    color: '#FFFFFF',
+    fontFamily: 'Inter',
+    fontSize: scaleFontSize(16),
+    lineHeight: scaleFontSize(20),
+    fontWeight: '700',
+  },
+  title3: {
+    color: '#FFFFFF',
+    fontFamily: 'Inter',
+    fontSize: scaleFontSize(17),
+    lineHeight: scaleFontSize(20),
+    fontWeight: '800',
   },
   tag: {
     borderRadius: 18,

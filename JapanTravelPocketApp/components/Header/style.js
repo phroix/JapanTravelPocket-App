@@ -26,6 +26,12 @@ const style = StyleSheet.create({
     lineHeight: scaleFontSize(32),
     fontWeight: '400',
   },
+  title5: {
+    fontFamily: 'Inter',
+    fontSize: scaleFontSize(22),
+    lineHeight: scaleFontSize(32),
+    fontWeight: '500',
+  },
 });
 
 export default style;

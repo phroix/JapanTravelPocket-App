@@ -7,6 +7,8 @@ import {updateSpendingsDate} from '../../redux/reducers/Spendings';
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
 
+import SpendingsAPI from '../../api/spendings';
+
 import DatePicker from '../../components/DatePicker/DatePicker';
 import Header from '../../components/Header/Header';
 import {Routes} from '../../navigation/Routes';
@@ -27,8 +29,8 @@ const DatePickerScreen = ({navigation}) => {
       <View style={style.datePicker}>
         <DatePicker
           onChangeDate={value => {
-            console.log(Routes.Spendings);
             dispatch(updateSpendingsDate(value));
+            // SpendingsAPI.getSpendingByDate(value.toString());
             navigation.navigate(Routes.Spendings);
           }}
         />

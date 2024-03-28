@@ -3,7 +3,7 @@ import {View, Text, Pressable} from 'react-native';
 import PropTypes from 'prop-types';
 import style from './style';
 
-const DateHeaderButton = props => {
+const HeaderButton = props => {
   return (
     <Pressable onPress={() => props.onPress()}>
       <Text
@@ -15,17 +15,17 @@ const DateHeaderButton = props => {
   );
 };
 
-DateHeaderButton.defaultProps = {
+HeaderButton.defaultProps = {
   title: '',
   color: '#FFFFFF',
   onPress: () => {},
 };
 
-DateHeaderButton.propTypes = {
+HeaderButton.propTypes = {
   title: PropTypes.string,
   color: PropTypes.string,
   numberOfLines: PropTypes.number,
   onPress: PropTypes.func,
 };
 
-export default DateHeaderButton;
+export default HeaderButton;

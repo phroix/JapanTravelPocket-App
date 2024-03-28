@@ -8,28 +8,36 @@ import {Routes} from './Routes';
 import Calculator from '../screens/Calculator/Calculator';
 import Spendings from '../screens/Spendings/Spendings';
 import Activities from '../screens/Activities/Activities';
+import Tags from '../screens/Tags/Tags';
+import DatePickerScreen from '../screens/DatePickerScreen/DatePickerScreen';
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {verticalScale} from '../assets/styles/scaling';
-import DatePickerScreen from '../screens/DatePickerScreen/DatePickerScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const DatePickerStack = () => {
+const SpendingsStack = () => {
   return (
     <Stack.Navigator screenOptions={{header: () => null, headerShown: false}}>
-      <Stack.Screen
-        name={Routes.Spendings}
-        component={Spendings}
-      />
+      <Stack.Screen name={Routes.Spendings} component={Spendings} />
       <Stack.Screen
         name={Routes.DatePickerScreen}
         component={DatePickerScreen}
       />
+      <Stack.Screen name={Routes.Tags} component={Tags} />
     </Stack.Navigator>
   );
 };
+
+// const TagsStack = () => {
+//   return (
+//     <Stack.Navigator screenOptions={{header: () => null, headerShown: false}}>
+//       <Stack.Screen name={Routes.Spendings} component={Spendings} />
+//       <Stack.Screen name={Routes.Tags} component={Tags} />
+//     </Stack.Navigator>
+//   );
+// };
 
 const MainNavigation = () => {
   const iconSize = 30;
@@ -81,7 +89,7 @@ const MainNavigation = () => {
         },
       })}>
       <Tab.Screen name={Routes.Calculator} component={Calculator} />
-      <Tab.Screen name={Routes.DatePickerStack} component={DatePickerStack} />
+      <Tab.Screen name={Routes.DatePickerStack} component={SpendingsStack} />
       <Tab.Screen name={Routes.Activities} component={Activities} />
     </Tab.Navigator>
   );

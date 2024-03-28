@@ -44,17 +44,17 @@ const Calculator = () => {
   const [euroInput, setEuroInput] = useState(null);
   const [yenInput, setYenInput] = useState(null);
   // dispatch(resetCalcData());
-  console.log('general');
+  // console.log('general');
 
   useEffect(() => {
     // getCurrency();
     // getCurrency(setEuroCurrency, setYenCurrency, setCurrencyDate);
-    console.log('useEffect');
+    // console.log('useEffect');
   }, []);
 
   useFocusEffect(
     React.useCallback(() => {
-      console.log('useFocusEffect'); // This will log every time the component gains focus
+      // console.log('useFocusEffect'); // This will log every time the component gains focus
     }, []),
   );
 

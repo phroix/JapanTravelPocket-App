@@ -1,19 +1,19 @@
 import axios from 'axios';
 import store from '../redux/store';
-import {updateSpendings} from '../redux/reducers/Spendings';
+import {updateTags} from '../redux/reducers/Tags';
 
 const API_URL = process.env.API_URL;
 
-const getSpendingByDate = async date => {
+const getTags = async () => {
   try {
-    const response = await axios.get(API_URL + `/spendings?date=${date}`);
+    const response = await axios.get(API_URL + `/tags`);
 
     if (response.status !== 200) {
-      throw new Error('Failed to fetch spendings.');
+      throw new Error('Failed to fetch tags.');
     }
 
     // if (response.data.length > 0) {
-    store.dispatch(updateSpendings(response.data));
+    store.dispatch(updateTags(response.data));
     // } else {
     //   console.log('No spendings found for the given date.');
     // }
@@ -24,8 +24,8 @@ const getSpendingByDate = async date => {
   }
 };
 
-const SpendingsAPI = {
-  getSpendingByDate,
+const TagsAPI = {
+  getTags,
 };
 
-export default SpendingsAPI;
+export default TagsAPI;
