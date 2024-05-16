@@ -259,6 +259,7 @@ const Calculator = () => {
                   onChangeText={val => {
                     setCustomYenCurrency(val);
                   }}
+                  keyboardType={'decimal-pad'}
                 />
               </View>
               <View style={style.submitButtonContainer}>
