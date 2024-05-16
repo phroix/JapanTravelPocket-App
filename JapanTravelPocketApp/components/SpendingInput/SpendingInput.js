@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
@@ -9,6 +9,16 @@ import PropTypes from 'prop-types';
 const SpendingInput = props => {
   const [value, setValue] = useState('');
 
+  // // Update local state when the value prop changes
+  // useEffect(() => {
+  //   setValue(props.value);
+  // }, [props.value]);
+
+  const onChangeText = val => {
+    setValue(val);
+    props.onChangeText(val);
+  };
+
   return (
     <View style={style.container}>
       <View style={style.labelContainer}>
@@ -18,15 +28,15 @@ const SpendingInput = props => {
         <TextInput
           placeholder={props.placeholder ? props.placeholder : ''}
           style={style.input}
-          //   value={props.value}
+          // value={value} // Use local state value here
+          value={props.value}
           selectTextOnFocus={true}
           keyboardAppearance={'dark'}
-          value={props.value}
           keyboardType={props.keyboardType ? props.keyboardType : 'default'}
-          // onChangeText={val => {
-          //   setValue(val);
-          //   props.onChangeText(val);
-          // }}
+          onChangeText={val => {
+            setValue(val);
+            props.onChangeText(val);
+          }}
         />
         {props.hasIcon && (
           <FontAwesomeIcon

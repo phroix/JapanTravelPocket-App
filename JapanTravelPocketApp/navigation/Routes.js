@@ -2,7 +2,8 @@ export const Routes = {
   Calculator: 'Calculator',
   Spendings: 'Spendings',
   DatePickerScreen: 'DatePickerScreen',
-  DatePickerStack: 'DatePickerStack',
+  SpendingsDatePickerStack: 'SpendingsDatePickerStack',
+  ActivitiesDatePickerStack: 'ActivitiesDatePickerStack',
   Activities: 'Activities',
   Tags: "Tags"
 };

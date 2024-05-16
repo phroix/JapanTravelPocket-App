@@ -7,16 +7,20 @@ import {persistReducer, persistStore} from 'redux-persist';
 // Importing the combineReducers and configureStore functions from the Redux Toolkit
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 
+import logger from 'redux-logger';
+
 // Importing the CalcData reducer from the ./reducers/CalcData file
 import CalcData from './reducers/CalcData';
 import Spendings from './reducers/Spendings';
 import Tags from './reducers/Tags';
+import Activities from './reducers/Activities';
 
 // Creating a rootReducer that combines all reducers in the app
 const rootReducer = combineReducers({
   calcData: CalcData,
   spendings: Spendings,
   tags: Tags,
+  activities: Activities
 });
 
 // Configuring the redux-persist library to persist the root reducer with AsyncStorage
@@ -41,6 +45,10 @@ const store = configureStore({
       serializableCheck: false,
     });
   },
+  //redux logger
+  // middleware: getDefaultMiddleware => {
+  //   return getDefaultMiddleware().concat(logger);
+  // },
 });
 
 // Exporting the store to be used in the app

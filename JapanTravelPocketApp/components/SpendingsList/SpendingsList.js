@@ -30,8 +30,8 @@ const SpendingsList = (props, {navigation}) => {
   }, [spendings]);
 
   useEffect(() => {
-    console.log('spendingsList');
-    console.log(spendingsRenderedData);
+    // console.log('spendingsList');
+    // console.log(spendingsRenderedData);
     setTotalYenAmount(0);
     let total = 0;
     spendings.map(item => {
@@ -91,6 +91,7 @@ const SpendingsList = (props, {navigation}) => {
             amount={item.amount.toString()}
             tag={item.tags.tag}
             tagColor={item.tags.color}
+            onPress={() => props.onPressRow(item)}
           />
         )}
       />
@@ -109,6 +110,7 @@ const SpendingsList = (props, {navigation}) => {
 SpendingsList.propTypes = {
   spendings: PropTypes.array.isRequired,
   onPress: PropTypes.func,
+  onPressRow: PropTypes.func,
 };
 
 export default SpendingsList;

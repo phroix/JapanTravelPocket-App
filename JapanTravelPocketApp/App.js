@@ -1,5 +1,6 @@
+import React, {useEffect, useRef} from 'react';
+import {AppState} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import React from 'react';
 import MainNavigation from './navigation/MainNavigation';
 
 import {Provider} from 'react-redux';
@@ -7,6 +8,9 @@ import store from './redux/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistor} from './redux/store';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+
+import SpendingsAPI from './api/spendings';
+import TagsAPI from './api/tags';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {fab} from '@fortawesome/free-brands-svg-icons';
@@ -20,8 +24,12 @@ import {faEuroSign} from '@fortawesome/free-solid-svg-icons/faEuroSign';
 import {faYenSign} from '@fortawesome/free-solid-svg-icons/faYenSign';
 import {faRetweet} from '@fortawesome/free-solid-svg-icons/faRetweet';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import {faPlus} from '@fortawesome/free-solid-svg-icons/faPlus';
 import {faXmark} from '@fortawesome/free-solid-svg-icons/faXmark';
+import {faTrash} from '@fortawesome/free-solid-svg-icons/faTrash';
+import {faBars} from '@fortawesome/free-solid-svg-icons/faBars';
+import ActivitiesAPI from './api/activities';
 
 library.add(
   fab,
@@ -35,11 +43,38 @@ library.add(
   faYenSign,
   faRetweet,
   faChevronLeft,
+  faChevronRight,
   faPlus,
   faXmark,
+  faTrash,
+  faBars,
 );
 
 const App = () => {
+  const appState = useRef(AppState.currentState);
+  useEffect(() => {
+    const subscription = AppState.addEventListener(
+      'change',
+      async nextAppState => {
+        if (
+          appState.current.match(/inactive|background/) &&
+          nextAppState === 'active'
+        ) {
+          await TagsAPI.getTags();
+          await SpendingsAPI.getSpendings();
+          await ActivitiesAPI.getActivities();
+          console.log('Come back in app');
+        }
+        appState.current = nextAppState;
+      },
+    );
+    TagsAPI.getTags();
+    SpendingsAPI.getSpendings();
+    ActivitiesAPI.getActivities();
+
+    console.log('Application rendered');
+  }, []);
+
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <Provider store={store}>

@@ -17,7 +17,7 @@ import {verticalScale} from '../assets/styles/scaling';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const SpendingsStack = () => {
+const SpendingsDatePickerStack = () => {
   return (
     <Stack.Navigator screenOptions={{header: () => null, headerShown: false}}>
       <Stack.Screen name={Routes.Spendings} component={Spendings} />
@@ -26,6 +26,18 @@ const SpendingsStack = () => {
         component={DatePickerScreen}
       />
       <Stack.Screen name={Routes.Tags} component={Tags} />
+    </Stack.Navigator>
+  );
+};
+
+const ActivitiesDatePickerStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{header: () => null, headerShown: false}}>
+      <Stack.Screen name={Routes.Activities} component={Activities} />
+      <Stack.Screen
+        name={Routes.DatePickerScreen}
+        component={DatePickerScreen}
+      />
     </Stack.Navigator>
   );
 };
@@ -59,11 +71,11 @@ const MainNavigation = () => {
             iconName = focused
               ? 'fa-solid fa-money-bill-1'
               : 'fa-regular fa-money-bill-1';
-          } else if (route.name === Routes.DatePickerStack) {
+          } else if (route.name === Routes.SpendingsDatePickerStack) {
             iconName = focused
               ? 'fa-solid fa-credit-card'
               : 'fa-regular fa-credit-card';
-          } else if (route.name === Routes.Activities) {
+          } else if (route.name === Routes.ActivitiesDatePickerStack) {
             iconName = focused
               ? 'fa-solid fa-bookmark'
               : 'fa-regular fa-bookmark';
@@ -79,9 +91,9 @@ const MainNavigation = () => {
 
           if (route.name === Routes.Calculator) {
             labelName = focused ? Routes.Calculator : '';
-          } else if (route.name === Routes.DatePickerStack) {
+          } else if (route.name === Routes.SpendingsDatePickerStack) {
             labelName = focused ? Routes.Spendings : '';
-          } else if (route.name === Routes.Activities) {
+          } else if (route.name === Routes.ActivitiesDatePickerStack) {
             labelName = focused ? Routes.Activities : '';
           }
 
@@ -89,8 +101,8 @@ const MainNavigation = () => {
         },
       })}>
       <Tab.Screen name={Routes.Calculator} component={Calculator} />
-      <Tab.Screen name={Routes.DatePickerStack} component={SpendingsStack} />
-      <Tab.Screen name={Routes.Activities} component={Activities} />
+      <Tab.Screen name={Routes.SpendingsDatePickerStack} component={SpendingsDatePickerStack} />
+      <Tab.Screen name={Routes.ActivitiesDatePickerStack} component={ActivitiesDatePickerStack} />
     </Tab.Navigator>
   );
 };

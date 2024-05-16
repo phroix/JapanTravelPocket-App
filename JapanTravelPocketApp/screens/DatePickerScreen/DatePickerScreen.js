@@ -12,9 +12,23 @@ import SpendingsAPI from '../../api/spendings';
 import DatePicker from '../../components/DatePicker/DatePicker';
 import Header from '../../components/Header/Header';
 import {Routes} from '../../navigation/Routes';
+import {updateActivityDate} from '../../redux/reducers/Activities';
 
-const DatePickerScreen = ({navigation}) => {
+const DatePickerScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
+
+  const formatDate = dateString => {
+    const dateObject = new Date(dateString);
+    const year = dateObject.getFullYear();
+    const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
+    const day = dateObject.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const showModalParam = route.params?.showModal;
+  const spendingParam = route.params?.spending;
+  const activityParam = route.params?.activity;
+  const cameFromRoute = route.params?.cameFrom;
 
   return (
     <SafeAreaView style={[globalStyle.backgroundScreen, globalStyle.flex]}>
@@ -29,9 +43,31 @@ const DatePickerScreen = ({navigation}) => {
       <View style={style.datePicker}>
         <DatePicker
           onChangeDate={value => {
-            dispatch(updateSpendingsDate(value));
-            // SpendingsAPI.getSpendingByDate(value.toString());
-            navigation.navigate(Routes.Spendings);
+            if (cameFromRoute == 'Spendings') {
+              // console.log(formatDate(value));
+              // SpendingsAPI.getSpendingByDate(value.toString());
+              if (showModalParam) {
+                navigation.navigate(Routes.Spendings, {
+                  showModalParam,
+                  spendingParam,
+                  date: value,
+                });
+              } else {
+                dispatch(updateSpendingsDate(formatDate(value)));
+                navigation.navigate(Routes.Spendings);
+              }
+            } else {
+              if (showModalParam) {
+                navigation.navigate(Routes.Activities, {
+                  showModalParam,
+                  activityParam,
+                  date: value,
+                });
+              } else {
+                dispatch(updateActivityDate(formatDate(value)));
+                navigation.navigate(Routes.Activities);
+              }
+            }
           }}
         />
       </View>

@@ -5,8 +5,13 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   Keyboard,
+  Pressable,
+  Modal,
+  Text,
 } from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
+import store from '../../redux/store';
+import {updateYenCurrency} from '../../redux/reducers/CalcData';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
@@ -15,10 +20,12 @@ import CalcInput from '../../components/CalcInput/CalcInput';
 import SwitchButton from '../../components/SwitchButton/SwitchButton';
 import Header from '../../components/Header/Header';
 import SuggestionButton from '../../components/SuggestionButton/SuggestionButton';
+import SpendingInput from '../../components/SpendingInput/SpendingInput';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {resetCalcData} from '../../redux/reducers/CalcData';
 import {getCurrency} from '../../api/currency';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const Calculator = () => {
   //const currency data from redux
@@ -43,6 +50,10 @@ const Calculator = () => {
   //input currency amount
   const [euroInput, setEuroInput] = useState(null);
   const [yenInput, setYenInput] = useState(null);
+
+  const [customYenCurrency, setCustomYenCurrency] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
   // dispatch(resetCalcData());
   // console.log('general');
 
@@ -100,11 +111,32 @@ const Calculator = () => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   };
 
+  const handleSubmitButton = () => {
+    if (customYenCurrency !== '' && customYenCurrency !== null) {
+      store.dispatch(updateYenCurrency(parseFloat(customYenCurrency)));
+    } else {
+      getCurrency();
+    }
+    setShowModal(false);
+    setCustomYenCurrency(null);
+  };
+
+  const handlePressSetting = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseSubmitForm = () => {
+    setShowModal(false);
+  };
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={[globalStyle.backgroundScreen, globalStyle.flex]}>
-        {/* <ScrollView> */}
-        <View style={style.header}>
+        <Pressable
+          onPress={() => {
+            handlePressSetting();
+          }}
+          style={style.header}>
           <View style={style.headerSpace}>
             <Header
               title={isEuro ? '1 Euro entspricht' : '1 Yen entspricht'}
@@ -129,7 +161,7 @@ const Calculator = () => {
               numberOfLines={1}
             />
           </View>
-        </View>
+        </Pressable>
         <View style={style.inputs}>
           <View style={style.headerSpace}>
             <CalcInput
@@ -206,6 +238,42 @@ const Calculator = () => {
             )}
 
         {/* </ScrollView> */}
+        <Modal transparent visible={showModal}>
+          <View style={style.modalContainer}>
+            <View style={style.customCurrencyContainer}>
+              <View style={style.closeButtonContainer}>
+                <Pressable
+                  style={style.closeButton}
+                  onPress={() => handleCloseSubmitForm()}>
+                  <FontAwesomeIcon
+                    icon={'fa-solid fa-xmark'}
+                    size={25}
+                    color={'white'}
+                  />
+                </Pressable>
+              </View>
+              <View style={style.input}>
+                <SpendingInput
+                  label={'Currency'}
+                  value={customYenCurrency}
+                  onChangeText={val => {
+                    setCustomYenCurrency(val);
+                  }}
+                />
+              </View>
+              <View style={style.submitButtonContainer}>
+                <Pressable
+                  style={style.submitButton}
+                  disabled={false}
+                  onPress={() => {
+                    handleSubmitButton();
+                  }}>
+                  <Text style={style.submitLabel}>Submit</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </Modal>
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );
