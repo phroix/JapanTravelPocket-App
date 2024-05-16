@@ -71,7 +71,7 @@ const Spendings = ({navigation, route}) => {
   const showModalParam = route.params?.showModalParam;
   const spendingParam = route.params?.spendingParam;
   const dateParam = route.params?.date;
-  console.log('dateParam ' + dateParam);
+  // console.log('dateParam ' + dateParam);
 
   const [spending, setSpending] = useState(initalSpending);
   const [pressedSpending, setPressedSpending] = useState(false);
@@ -103,8 +103,8 @@ const Spendings = ({navigation, route}) => {
   }, [date]);
 
   useEffect(() => {
-    console.log('useCallback');
-    console.log(showModalParam);
+    // console.log('useCallback');
+    // console.log(showModalParam);
     if (showModalParam) {
       setShowModal(showModalParam);
       setSpending(spendingParam);
@@ -116,7 +116,7 @@ const Spendings = ({navigation, route}) => {
   }, [showModalParam, spendingParam]);
 
   useEffect(() => {
-    console.log('[]');
+    // console.log('[]');
     // if (date != null) {
     //   const data = SpendingsAPI.getSpendingByDate(date.toString());
     //   setError(data);
@@ -212,7 +212,7 @@ const Spendings = ({navigation, route}) => {
 
   const deleteSpendingPerm = () => {
     setShowDeleteModal(false);
-    console.log(spending.id);
+    // console.log(spending.id);
     // Delete tag from local state
     deleteSpendingData(spending.id);
     const updatedSpending = spendings.filter(item => item.id !== spending.id);
@@ -282,9 +282,9 @@ const Spendings = ({navigation, route}) => {
       };
 
       const dbTag = tags.find(tag => tag.id === newDbSpending.tags_id);
-      console.log(dbTag.id);
-      console.log(dbTag.tag);
-      console.log(dbTag.color);
+      // console.log(dbTag.id);
+      // console.log(dbTag.tag);
+      // console.log(dbTag.color);
 
       const newLocalSpending = {
         ...newDbSpending,
@@ -454,7 +454,7 @@ const Spendings = ({navigation, route}) => {
                   style={[style.deleteButton]}
                   disabled={!pressedSpending}
                   onPress={() => {
-                    console.log('pressed');
+                    // console.log('pressed');
                     setShowModal(false);
                     setShowDeleteModal(true);
                   }}>

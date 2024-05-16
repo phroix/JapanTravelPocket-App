@@ -42,7 +42,7 @@ const Activities = ({navigation, route}) => {
   const activitiesData = useSelector(state => state.activities);
   const allActivities = activitiesData.activities; //all spendings
   const date = activitiesData.date;
-  console.log('date: ' + date);
+  // console.log('date: ' + date);
   const activities = allActivities.filter(activity => {
     // Check if the spending's date matches the specified date
     // console.log(spending.date.slice(0, 10))
@@ -64,7 +64,7 @@ const Activities = ({navigation, route}) => {
   const showModalParam = route.params?.showModalParam;
   const activityParam = route.params?.activityParam;
   const dateParam = route.params?.date;
-  console.log('dateParam ' + dateParam);
+  // console.log('dateParam ' + dateParam);
 
   const [activity, setActivity] = useState(initalActivity);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -79,9 +79,9 @@ const Activities = ({navigation, route}) => {
   }, [date]);
 
   useEffect(() => {
-    console.log('useCallback');
-    console.log(showModalParam);
-    console.log(dateParam);
+    // console.log('useCallback');
+    // console.log(showModalParam);
+    // console.log(dateParam);
     if (showModalParam) {
       setShowModal(showModalParam);
       setActivity(activityParam);
@@ -162,7 +162,7 @@ const Activities = ({navigation, route}) => {
   };
 
   useEffect(() => {
-    console.log('formatDateNew(dayjs()) ' + formatDateNew(dayjs()));
+    // console.log('formatDateNew(dayjs()) ' + formatDateNew(dayjs()));
     // if (date != null) {
     //   const data = SpendingsAPI.getSpendingByDate(date.toString());
     //   setError(data);
@@ -195,7 +195,7 @@ const Activities = ({navigation, route}) => {
   const handlePressActivity = item => {
     setShowModal(true);
     // setSpendingId(item.id);
-    console.log(item);
+    // console.log(item);
     setActivityName(item.name);
     setActivityDescription(item.description);
     setActivityDate(item.date);
@@ -338,7 +338,7 @@ const Activities = ({navigation, route}) => {
                   style={[style.deleteButton]}
                   disabled={!pressedActivity}
                   onPress={() => {
-                    console.log('pressed');
+                    // console.log('pressed');
                     // setShowModal(false);
                     setShowDeleteModal(true);
                   }}>

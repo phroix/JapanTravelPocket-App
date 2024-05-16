@@ -81,7 +81,7 @@ const Tags = ({navigation}) => {
       }
       dispatch(updateTagId(biggestId));
       setTagId(biggestId);
-      console.log('The biggest ID is:', tagId);
+      // console.log('The biggest ID is:', tagId);
     }
   }, [tags]);
 
@@ -194,8 +194,8 @@ const Tags = ({navigation}) => {
 
     if (pressedTag) {
       const existingTagIndex = tags.findIndex(item => item.id === tag.id);
-      console.log(existingTagIndex);
-      console.log(tag.id);
+      // console.log(existingTagIndex);
+      // console.log(tag.id);
       // Tag exists, update it
       const updatedTag = {
         tag: tag.tag.toString(),

@@ -58,7 +58,7 @@ const Calculator = () => {
   // console.log('general');
 
   useEffect(() => {
-    // getCurrency();
+    getCurrency();
     // getCurrency(setEuroCurrency, setYenCurrency, setCurrencyDate);
     // console.log('useEffect');
   }, []);

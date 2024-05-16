@@ -54,7 +54,7 @@ const SubmitForm = props => {
           onPress={() => {
             props.onPressSubmit();
 
-            console.log(props.spendingName);
+            // console.log(props.spendingName);
           }}>
           <Text style={style.submitLabel}>Submit</Text>
         </Pressable>

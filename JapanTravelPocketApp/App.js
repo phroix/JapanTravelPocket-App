@@ -63,7 +63,7 @@ const App = () => {
           await TagsAPI.getTags();
           await SpendingsAPI.getSpendings();
           await ActivitiesAPI.getActivities();
-          console.log('Come back in app');
+          // console.log('Come back in app');
         }
         appState.current = nextAppState;
       },
@@ -72,7 +72,7 @@ const App = () => {
     SpendingsAPI.getSpendings();
     ActivitiesAPI.getActivities();
 
-    console.log('Application rendered');
+    // console.log('Application rendered');
   }, []);
 
   return (
