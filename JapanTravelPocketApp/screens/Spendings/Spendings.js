@@ -43,11 +43,11 @@ const Spendings = ({navigation, route}) => {
   const spendingsData = useSelector(state => state.spendings);
   const allSpendings = spendingsData.spendings; //all spendings
   const date = spendingsData.date;
-  // console.log('date: ' + date);
+  console.log('date: ' + date);
   const spendings = allSpendings.filter(spending => {
     // Check if the spending's date matches the specified date
     // console.log(spending.date.slice(0, 10))
-    return spending.date.slice(0, 10) === date.toString().slice(0, 10); // Compare the date strings directly
+    return spending.date.slice(0, 10) === date?.toString().slice(0, 10); // Compare the date strings directly
   });
 
   // console.log("date1 " + date);
@@ -98,7 +98,7 @@ const Spendings = ({navigation, route}) => {
 
   useEffect(() => {
     // if (!showModalParam) {
-    setSpendingDate(date);
+    if (date) setSpendingDate(date);
     // }
   }, [date]);
 
@@ -177,11 +177,11 @@ const Spendings = ({navigation, route}) => {
 
     setSpending(currentSpending => ({
       ...currentSpending,
-      name: spendingName?.toString(), 
+      name: spendingName?.toString(),
       amount: parseFloat(spendingAmount),
-      currency: parseFloat(spendingCurrency), 
-      date: spendingDate.toString(), 
-      tags_id: parseFloat(spendingTag), 
+      currency: parseFloat(spendingCurrency),
+      date: spendingDate.toString(),
+      tags_id: parseFloat(spendingTag),
     }));
   }, [spendingName, spendingAmount, spendingDate, spendingTag]);
 
@@ -320,6 +320,7 @@ const Spendings = ({navigation, route}) => {
   };
 
   const resetNewSubmit = () => {
+    setPressedSpending(false);
     setShowModal(false);
     setSpendingName(null);
     setSpendingAmount(null);

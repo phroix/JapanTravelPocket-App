@@ -31,7 +31,6 @@ const getSpendings = async () => {
     if (response.status !== 200) {
       throw new Error('Failed to fetch spendings.');
     }
-
     // if (response.data.length > 0) {
     store.dispatch(updateSpendings(response.data));
     // } else {

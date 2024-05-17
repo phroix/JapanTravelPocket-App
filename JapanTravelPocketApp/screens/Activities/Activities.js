@@ -46,7 +46,7 @@ const Activities = ({navigation, route}) => {
   const activities = allActivities.filter(activity => {
     // Check if the spending's date matches the specified date
     // console.log(spending.date.slice(0, 10))
-    return activity.date.slice(0, 10) === date.toString().slice(0, 10); // Compare the date strings directly
+    return activity.date.slice(0, 10) === date?.toString().slice(0, 10); // Compare the date strings directly
   });
 
   const [activityId, setActivityId] = useState(activitiesData.activityId);
@@ -74,7 +74,7 @@ const Activities = ({navigation, route}) => {
 
   useEffect(() => {
     // if (!showModalParam) {
-    setActivityDate(date);
+    if (date) setActivityDate(date);
     // }
   }, [date]);
 
@@ -116,7 +116,7 @@ const Activities = ({navigation, route}) => {
       ...currentActivity,
       name: activityName?.toString(),
       description: activityDescription?.toString(),
-      date: activityDate.toString(),
+      date: activityDate?.toString(),
     }));
   }, [activityName, activityDescription, activityDate]);
 
